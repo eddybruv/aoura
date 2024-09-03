@@ -52,7 +52,7 @@ type FormFieldProps = {
   title: string;
   value: string;
   handleChangeText: any;
-  otherStyles: string;
+  otherStyles?: string;
   keyboardType?: string;
   placeholder?: string;
 };

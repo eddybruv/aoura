@@ -1,10 +1,4 @@
-import {
-  View,
-  TextInput,
-  TouchableOpacity,
-  Image,
-  Alert,
-} from "react-native";
+import { View, TextInput, TouchableOpacity, Image, Alert } from "react-native";
 import React, { useState } from "react";
 import { icons } from "@/constants";
 import { router, usePathname } from "expo-router";
@@ -48,6 +42,6 @@ const SearchInput = ({
 export default SearchInput;
 
 type SearchInputProps = {
-  initialQuery: string | string[];
+  initialQuery?: string | string[];
   otherStyles?: string;
 };
