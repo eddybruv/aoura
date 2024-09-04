@@ -4,27 +4,27 @@ import {
   FlatList,
   Image,
   RefreshControl,
-  Alert,
 } from "react-native";
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { images } from "@/constants";
 import SearchInput from "../components/SearchInput";
 import Trending from "../components/Trending";
 import EmptyState from "../components/EmptyState";
 import { getAllPosts, getLatestsPosts } from "@/lib/appwrite";
-import { Models } from "react-native-appwrite";
 import { useAppwrite } from "@/lib/useAppwrite";
 import VideoCard from "../components/VideoCard";
+import { useGlobalContext } from "@/context/GlobalProvider";
 
 const Home = () => {
   const { data: posts, refetch } = useAppwrite(getAllPosts);
   const { data: latestPosts } = useAppwrite(getLatestsPosts);
   const [refreshing, setRefreshing] = useState(false);
+  const { user } = useGlobalContext();
 
   const onRefresh = async () => {
     setRefreshing(true);
-    refetch();
+    await refetch();
     setRefreshing(false);
   };
 
@@ -43,7 +43,7 @@ const Home = () => {
                     Welcome Back
                   </Text>
                   <Text className="text-2xl font-psemibold text-white">
-                    Eddy
+                    {user?.username}
                   </Text>
                 </View>
                 <View className="mt-1.5">
